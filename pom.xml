@@ -14,7 +14,7 @@
 	<name>project18</name>
 	<description>Projekt 18 - Artur Jałocha</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
