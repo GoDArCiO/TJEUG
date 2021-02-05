@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Post Project</title>
+    <link th:rel="stylesheet" th:href="@{/css/bulma.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body class="Site">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+            <div>
+                <a class="navbar-item" th:href="@{/login}">Zaloguj się</a>
+            </div>
+            <div>
+                <a class="navbar-item" th:href="@{/posts/search}">Szukaj</a>
+            </div>
+            <div>
+                <a class="navbar-item" th:href="@{/statistics}">Statystyka</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="Site-content">
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Blog
+                </h1>
+                <h2 class="subtitle">
+                    Komentarz do postu
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns is-justify-content-center">
+                <div class="column is-four-fifths">
+                    <div class="box">
+                        <form th:action="@{|/komentarz/bezloginu/${oldPost}|}" th:object="${komentarz}" method="post">
+                            <div class="field">
+                                <label class="label">Komentujesz post autorów :</label>
+                                <div class="control">
+                                    <label>
+
+                                        <p th:text="${autors1}">Autorzy</p>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Komentarz</label>
+                                <div class="control">
+                                    <label>
+                                        <textarea class="textarea" placeholder="..." th:field="*{comment}"
+                                                  th:errorClass="is-danger"></textarea>
+                                    </label>
+                                </div>
+                                <p th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"
+                                   class="help is-danger">Post Content Error</p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Twój pseudonim</label>
+                                <div class="control">
+                                    <label>
+                                        <input class="input" type="text" placeholder="..." th:field="*{username}"
+                                               th:errorClass="is-danger">
+                                    </label>
+                                </div>
+                                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                   class="help is-danger">Tag Error</p>
+                            </div>
+
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button type="submit" class="button is-link">Wyslij</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-link is-light"
+                                            onclick="event.preventDefault(); history.back()">Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer Custom-footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Artur Jałocha 2020</strong>
+        </p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.Site-content {
+    flex: 1;
+}
+.Custom-footer {
+    padding: 2rem;
+}
+
+.user{
+    color: #cc0f35;
+}

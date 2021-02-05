@@ -1,0 +1,58 @@
+
+self:
+  app-site: https://projekt18artur.herokuapp.com/
+
+spring:
+  profiles:
+    active: prod
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ugtjeapptest@gmail.com
+    password: ugtjeapp1.
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    name: project18_Artur_Jałocha
+    url: jdbc:postgresql://localhost:5432/MyBlogDatabase
+    username: postgres
+    password: pwd
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties.hibernate:
+      order_inserts: true
+      batch_versioned_data: true
+      jdbc:
+        batch_size: 30
+
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    name: test
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+    open-in-view: false
+logging:
+  level:
+    com.sunbrid.services: debug

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Post Project</title>
+    <link th:rel="stylesheet" th:href="@{/css/bulma.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body class="Site">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <!--    <div class="navbar-brand">
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>-->
+
+    <!--    <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" th:href="@{/posts}">Home</a>
+
+                <a class="navbar-item" th:href="@{/posts/search}">Search</a>
+
+                <a class="navbar-item" th:href="@{/statistics}">Statistics</a>
+            </div>
+        </div>-->
+</nav>
+
+<div class="Site-content">
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Rejestracja
+                </h1>
+                <h2 class="subtitle">
+                    Podaj swoje dane
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns is-justify-content-center">
+                <div class="column is-four-fifths">
+                    <div class="box">
+                        <form th:action="@{/signup}" th:object="${user}" method="post" >
+                            <div class="field">
+                                <label class="label">Adres e-mail</label>
+                                <div class="control">
+                                    <label>
+                                        <input class="input" type="email" placeholder="Email" th:field="*{email}" th:errorClass="is-danger">
+                                    </label>
+                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help is-danger">E-mail Error</p>
+                                </div>
+
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <div class="control">
+                                    <label>
+                                        <input class="input" type="password" th:field="*{password}" th:errorClass="is-danger"></input>
+                                    </label>
+                                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="help is-danger">Password Error</p>
+                                </div>
+
+                            </div>
+                            <div class="field">
+                                <label class="label">Re-Password</label>
+                                <div class="control">
+                                    <label>
+                                        <input class="input" type="password" th:field="*{re_password}" th:errorClass="is-danger"></input>
+                                    </label>
+                                    <p th:if="${#fields.hasErrors('re_password')}" th:errors="*{re_password}" class="help is-danger">Password Error</p>
+                                </div>
+
+                            </div>
+                            <div class="field">
+                                <label class="label">Name and surname</label>
+                                <div class="control">
+                                    <label>
+                                        <input class="input" type="text" placeholder="Name and surname" th:field="*{fullName}" th:errorClass="is-danger">
+                                    </label>
+                                    <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="help is-danger">Full name name Error</p>
+                                </div>
+
+                            </div>
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button type="submit" class="button is-link">Wyślij</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-link is-light" onclick="event.preventDefault(); history.back()">Nie wysyłaj</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer Custom-footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Artur Jałocha 2021</strong>
+        </p>
+    </div>
+</footer>
+</body>
+</html>

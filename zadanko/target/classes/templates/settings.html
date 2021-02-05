@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Post Project</title>
+    <link th:rel="stylesheet" th:href="@{/css/bulma.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body class="Site">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+            <div>
+                <a class="navbar-item" th:href="@{/}">Zakończ</a>
+            </div>
+            <div>
+                <a class="navbar-item" th:href="@{/posts/search}">Szukaj</a>
+            </div>
+            <div>
+                <a class="navbar-item" th:href="@{/statistics}">Statystyka</a>
+            </div>
+
+            <div sec:authorize="hasAnyAuthority('ADMIN','CREATOR','EDITOR')">
+                <a class="navbar-item" th:href="@{/posts/tylkomojeposty}">Moje posty</a>
+            </div>
+            <div sec:authorize="hasAnyAuthority('ADMIN','CREATOR','EDITOR')">
+                <a class="navbar-item" th:href="@{/settings}">Import / Export</a>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="Site-content">
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Blog
+                </h1>
+                <h2 class="subtitle">
+                    Import / Export CSV
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns is-justify-content-center">
+                <div class="column is-four-fifths">
+                    <div class="box is-centered has-text-centered">
+                        <div class="columns is-justify-content-center">
+                            <div class="column is-one-third file is-boxed">
+                                <form th:action="@{/settings/sendCsv}" method="post" enctype="multipart/form-data">
+                                    <label class="file-label">
+                                        <input class="file-input" type="file" name="file" id="file" accept=".csv" required onchange="this.form.submit()">
+                                        <span class="file-cta">
+                                        <span class="file-icon">
+                                            <i class="fas fa-upload"></i>
+                                        </span>
+                                        <span class="file-label">
+                                            Import .csv
+                                        </span>
+                                    </span>
+                                    </label>
+                                </form>
+                            </div>
+                            <div class="column is-one-third file is-boxed">
+                                <a th:href="@{/settings/downloadCsv}" class="file-label" style="color: #4a4a4a">
+                                <label class="file-label">
+                                    <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-download"></i>
+                                    </span>
+                                            Export .csv&nbsp;
+                                    </span>
+                                </label>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer Custom-footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Artur Jałocha 2021</strong>
+        </p>
+    </div>
+</footer>
+</body>
+</html>

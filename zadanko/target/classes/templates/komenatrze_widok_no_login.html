@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Post Project</title>
+    <link th:rel="stylesheet" th:href="@{/css/bulma.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
+<body class="Site">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+
+            <div>
+                <a class="navbar-item" th:href="@{/login}">Zaloguj się</a>
+            </div>
+            <div>
+                <a class="navbar-item" th:href="@{/posts/search}">Szukaj</a>
+            </div>
+            <div>
+                <a class="navbar-item" th:href="@{/statistics}">Statystyka</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</nav>
+<div class="Site-content">
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Blog
+                </h1>
+                <h2 class="subtitle">
+                    Artur Jałocha
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container is-fluid">
+            <div class="columns">
+                <div class="column">
+                    <div class="box">
+                        <div class="mb-5">
+                            <div class="buttons is-right">
+                                 <span>
+                                         <a th:href="@{|/komentarz/bezloginu/${post_id}|}">Dodaj nowy</a>
+                                         </span>
+                            </div>
+                        </div>
+
+                        <article class="media" th:each="comment, index: ${comments}">
+                            <figure class="media-left">
+                                <p class="image is-64x64">
+                                    <img src="http://fastup.pl/data/mj/projekt/default.jpg" alt="Avatar"/>
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+
+                                        Autor:     <span th:text="${comment.username}">Lorem ipsum...</span>
+                                        <br>
+                                        <span th:text="${comment.comment}">Lorem tag...</span>
+                                        <br>
+                                    </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                    <div class="level-left">
+                                        <a class="level-item">
+                                            <span class="icon is-small"><i class="fas fa-reply"></i></span>
+                                        </a>
+                                        <a class="level-item">
+                                            <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+                                        </a>
+                                        <a class="level-item">
+                                            <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer Custom-footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Artur Jałocha 2021</strong>
+        </p>
+    </div>
+</footer>
+</body>
+</html>
